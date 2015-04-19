@@ -1,6 +1,6 @@
 function InitChart() {
-    // THE DATA
-    var data = 
+/** THE DATA */
+    var data1 = 
     [
         {
             "sale": "202",
@@ -23,8 +23,31 @@ function InitChart() {
         }
     ];
 
+    var data2 = 
+    [
+        {
+            "sale": "152",
+            "year": "2000"
+        }, {
+            "sale": "189",
+            "year": "2002"
+        }, {
+            "sale": "179",
+            "year": "2004"
+        }, {
+            "sale": "199",
+            "year": "2006"
+        }, {
+            "sale": "134",
+            "year": "2008"
+        }, {
+            "sale": "176",
+            "year": "2010"
+        }
+    ];
+/** END DATA */
 
-    // INITIALISATION
+/** INITIALISE PLOT AREA */
     var vis         = d3.select( "#visualisation" ),
         WIDTH       = 1000,
         HEIGHT      = 500,
@@ -46,14 +69,46 @@ function InitChart() {
 
     // APPEND X AXIS
     vis.append("svg:g")
+        .attr( "class","axis" ) //add class for css
         .attr( "transform", "translate(0," + ( HEIGHT - MARGINS.bottom ) + ")" )
         .call( xAxis );
 
     // APPEND Y AXIS
     vis.append("svg:g")
+        .attr( "class","axis" ) //add class for css
         .attr( "transform", "translate(" + ( MARGINS.left ) + ",0)" )
         .call( yAxis );
 
-    }
+    // PLOT LINE
+    var lineGen = d3.svg.line()
+
+    .x(function( d ) {
+        return xScale( d.year );
+    })
+
+    .y(function( d ) {
+        return yScale( d.sale );
+    })
+    .interpolate("basis"); // make line smooth
+    
+/** END PLOT AREA */   
+
+/** DRAW LINE (1) */
+    vis.append( 'svg:path' )
+        .attr( 'd', lineGen( data1 ) )
+        .attr( 'stroke', 'green' )
+        .attr( 'stroke-width', 2 )
+        .attr( 'fill', 'none' );
+/** END LINE (1) */
+
+/** DRAW LINE (2) */
+    vis.append('svg:path')
+        .attr( 'd', lineGen( data2 ) )
+        .attr( 'stroke', 'blue' )
+        .attr( 'stroke-width', 2 )
+        .attr( 'fill', 'none' );
+/** END LINE (2) */
+}
+
 
 InitChart();
