@@ -59,9 +59,33 @@ function InitChart() {
             left    : 50
         },
 
-        // Set the axes
-        xScale = d3.scale.linear().range( [MARGINS.left, WIDTH - MARGINS.right] ).domain( [2000,2010] ),
-        yScale = d3.scale.linear().range( [HEIGHT - MARGINS.top, MARGINS.bottom] ).domain( [134,215] ),
+        // Set the x axis
+        xScale = d3.scale
+                .linear()
+                .range( 
+                    [
+                        MARGINS.left,
+                        WIDTH - MARGINS.right
+                    ] )
+                .domain( 
+                    [
+                        GetMin( data1, 'year' ),
+                        GetMax( data1, 'year' )
+                    ] ),
+        
+        // Set the y axis
+        yScale = d3.scale
+                .linear()
+                .range( 
+                    [
+                        HEIGHT - MARGINS.top,
+                        MARGINS.bottom
+                    ] )
+                .domain( 
+                    [
+                        GetMin( data1, 'sale' ),
+                        GetMax( data1, 'sale' )
+                    ] ),
 
         // Create the axes
         xAxis = d3.svg.axis().scale( xScale ),
@@ -90,7 +114,7 @@ function InitChart() {
         return yScale( d.sale );
     })
     .interpolate("basis"); // make line smooth
-    
+
 /** END PLOT AREA */   
 
 /** DRAW LINE (1) */
@@ -110,5 +134,25 @@ function InitChart() {
 /** END LINE (2) */
 }
 
+/**
+ * Get Minimum value of column from data set
+ *
+ */
+function GetMin( data, column ) {
+    min = d3.min( data, function( done ) {
+        return done[column]; // same as done.year
+    })
+    return min;
+}
+
+/**
+ * Get Maximum value of column from data set
+ */
+function GetMax( data, column ) {
+    max = d3.max( data, function( done ) {
+        return done[column]; // same as done.year
+    })
+    return max;
+}
 
 InitChart();
