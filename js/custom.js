@@ -1,68 +1,7 @@
 function InitChart() {
-/** THE DATA */
-    var data = 
-    [
-        {
-            "Client": "ABC",
-            "sale": "202",
-            "year": "2000"
-        },
-        {
-            "Client": "ABC",
-            "sale": "215",
-            "year": "2002"
-        },
-        {
-            "Client": "ABC",
-            "sale": "179",
-            "year": "2004"
-        },
-        {
-            "Client": "ABC",
-            "sale": "199",
-            "year": "2006"
-        },
-        {
-            "Client": "ABC",
-            "sale": "134",
-            "year": "2008"
-        },
-        {
-            "Client": "ABC",
-            "sale": "176",
-            "year": "2010"
-        },
-        {
-            "Client": "XYZ",
-            "sale": "100",
-            "year": "2000"
-        },
-        {
-            "Client": "XYZ",
-            "sale": "215",
-            "year": "2002"
-        },
-        {
-            "Client": "XYZ",
-            "sale": "179",
-            "year": "2004"
-        },
-        {
-            "Client": "XYZ",
-            "sale": "199",
-            "year": "2006"
-        },
-        {
-            "Client": "XYZ",
-            "sale": "134",
-            "year": "2008"
-        },
-        {
-            "Client": "XYZ",
-            "sale": "176",
-            "year": "2013"
-        }
-    ];
+
+/** GET THE DATA */
+    var data = GetTheData();
 /** END DATA */
 
 /** INITIALISE PLOT AREA */
@@ -160,6 +99,7 @@ function InitChart() {
  * Get Minimum value of column from data set
  *
  * @todo how to get min from multidimensional data set?
+ *
  */
 function GetMin( data, column ) {
     // min gets the minimum data value from a range
@@ -174,6 +114,7 @@ function GetMin( data, column ) {
  * Get Maximum value of column from data set
  * 
  * @todo how to get max from multidimensional data set?
+ *
  */
 function GetMax( data, column ) {
     // max gets the maximum data value from a range
@@ -188,7 +129,6 @@ function GetMax( data, column ) {
  * Function to split data by key
  * Saves having two data arrays in the code
  * Keeps messy anonymous functions out of the code
- *
  */
 function SplitDataByKey( data, key ){
     // nest splits the data by a given key
@@ -204,6 +144,7 @@ function SplitDataByKey( data, key ){
  * Get random colour for lines of the graph
  *
  * @todo pass parameter to ensure the same colour is not used twice
+ *
  */
 function GetRandomColour(){
 
@@ -212,6 +153,79 @@ function GetRandomColour(){
     }
 
     return colour;
+}
+
+/**
+ * Get the data set. Keeps the code cleaner.
+ *
+ */
+function GetTheData(){
+
+    var data = 
+    [
+        {
+            "Client": "GAZ",
+            "sale": "202",
+            "year": "2000"
+        },
+        {
+            "Client": "GAZ",
+            "sale": "215",
+            "year": "2002"
+        },
+        {
+            "Client": "GAZ",
+            "sale": "179",
+            "year": "2004"
+        },
+        {
+            "Client": "GAZ",
+            "sale": "199",
+            "year": "2006"
+        },
+        {
+            "Client": "GAZ",
+            "sale": "134",
+            "year": "2008"
+        },
+        {
+            "Client": "GAZ",
+            "sale": "176",
+            "year": "2010"
+        },
+        {
+            "Client": "NAZ",
+            "sale": "100",
+            "year": "2000"
+        },
+        {
+            "Client": "NAZ",
+            "sale": "215",
+            "year": "2002"
+        },
+        {
+            "Client": "NAZ",
+            "sale": "179",
+            "year": "2004"
+        },
+        {
+            "Client": "NAZ",
+            "sale": "199",
+            "year": "2006"
+        },
+        {
+            "Client": "NAZ",
+            "sale": "134",
+            "year": "2008"
+        },
+        {
+            "Client": "NAZ",
+            "sale": "176",
+            "year": "2013"
+        }
+    ];
+
+    return data;
 }
 
 InitChart();
