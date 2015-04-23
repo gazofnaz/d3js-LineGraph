@@ -10,14 +10,17 @@ function InitChart() {
         HEIGHT      = 500,
         MARGINS     = 
         {
-            top     : 20,
+            top     : 50,
             right   : 20,
-            bottom  : 20,
+            bottom  : 50,
             left    : 50
         },
 
         // Split up the big data array into groups using the key
         dataGroup = SplitDataByKey( data, 'Client' ),
+
+        // define legend space
+        lSpace = WIDTH / dataGroup.length;
 
         // Set the x axis
         xScale = d3.scale
@@ -84,15 +87,26 @@ function InitChart() {
 
 /** END PLOT AREA */   
 
-/** DRAW LINES */
+/** DRAW GRAPHS */
     dataGroup.forEach( function( done, index ) {
+        
+        // draw the lines
         vis.append( 'svg:path' )
             .attr( 'd', lineGen( done.values ) )
             .attr( 'stroke', GetRandomColour() )
             .attr( 'stroke-width', 2 )
             .attr( 'fill', 'none' );
+
+        // draw the legend
+        vis.append( 'text' )
+            .attr( 'x', ( lSpace / 2 ) + index * lSpace )
+            .attr( 'y', HEIGHT )
+            .style( 'fill', 'black' )
+            .attr( 'class', 'legend' )
+            .text( done.key );
+
     });
-/** END LINES */
+/** END GRAPHS */
 }
 
 /**

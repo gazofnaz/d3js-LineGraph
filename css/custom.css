@@ -8,3 +8,9 @@
     font-family: Lato;
     font-size: 13px;
 }
+
+/** Legend text */ 
+.legend {
+    font-size: 14px;
+    font-weight: bold;
+}
