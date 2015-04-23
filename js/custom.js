@@ -5,7 +5,7 @@ function InitChart() {
 /** END DATA */
 
 /** INITIALISE PLOT AREA */
-    var vis         = d3.select( "#visualisation" ),
+    var vis         = d3.select( '#visualisation' ),
         WIDTH       = 1000,
         HEIGHT      = 500,
         MARGINS     = 
@@ -59,18 +59,18 @@ function InitChart() {
         yAxis = d3.svg
                 .axis()
                 .scale( yScale )
-                .orient("left");
+                .orient( 'left' );
 
     // APPEND X AXIS
-    vis.append("svg:g")
-        .attr( "class","axis" ) //add class for css
-        .attr( "transform", "translate(0," + ( HEIGHT - MARGINS.bottom ) + ")" )
+    vis.append( 'svg:g' )
+        .attr( 'class', 'axis' ) //add class for css
+        .attr( 'transform', 'translate(0,' + ( HEIGHT - MARGINS.bottom ) + ')' )
         .call( xAxis );
 
     // APPEND Y AXIS
-    vis.append("svg:g")
-        .attr( "class","axis" ) //add class for css
-        .attr( "transform", "translate(" + ( MARGINS.left ) + ",0)" )
+    vis.append( 'svg:g' )
+        .attr( 'class',' axis' ) //add class for css
+        .attr( 'transform', 'translate(' + ( MARGINS.left ) + ',0)' )
         .call( yAxis );
 
     // PLOT LINES
@@ -83,7 +83,7 @@ function InitChart() {
     .y(function( d ) {
         return yScale( d.sale );
     })
-    .interpolate("basis"); // make line smooth
+    .interpolate( 'basis' ); // make line smooth
 
 /** END PLOT AREA */   
 
@@ -163,7 +163,7 @@ function SplitDataByKey( data, key ){
 function GetRandomColour(){
 
     var colour = function() {
-        return "hsl(" + Math.random() * 360 + ",100%,50%)";
+        return 'hsl(' + Math.random() * 360 + ',100%,50%)';
     }
 
     return colour;
@@ -178,64 +178,64 @@ function GetTheData(){
     var data = 
     [
         {
-            "Client": "GAZ",
-            "sale": "202",
-            "year": "2000"
+            'Client': 'GAZ',
+            'sale'  : '202',
+            'year'  : '2000'
         },
         {
-            "Client": "GAZ",
-            "sale": "215",
-            "year": "2002"
+            'Client': 'GAZ',
+            'sale'  : '215',
+            'year'  : '2002'
         },
         {
-            "Client": "GAZ",
-            "sale": "179",
-            "year": "2004"
+            'Client': 'GAZ',
+            'sale'  : '179',
+            'year'  : '2004'
         },
         {
-            "Client": "GAZ",
-            "sale": "199",
-            "year": "2006"
+            'Client': 'GAZ',
+            'sale'  : '199',
+            'year'  : '2006'
         },
         {
-            "Client": "GAZ",
-            "sale": "134",
-            "year": "2008"
+            'Client': 'GAZ',
+            'sale'  : '134',
+            'year': '2008'
+        },  
+        {
+            'Client': 'GAZ',
+            'sale'  : '176',
+            'year'  : '2010'
         },
         {
-            "Client": "GAZ",
-            "sale": "176",
-            "year": "2010"
+            'Client': 'NAZ',
+            'sale'  : '100',
+            'year'  : '2000'
         },
         {
-            "Client": "NAZ",
-            "sale": "100",
-            "year": "2000"
+            'Client': 'NAZ',
+            'sale': '215',
+            'year': '2002'
         },
         {
-            "Client": "NAZ",
-            "sale": "215",
-            "year": "2002"
+            'Client': 'NAZ',
+            'sale'  : '179',
+            'year'  : '2004'
         },
         {
-            "Client": "NAZ",
-            "sale": "179",
-            "year": "2004"
+            'Client': 'NAZ',
+            'sale'  : '199',
+            'year'  : '2006'
         },
         {
-            "Client": "NAZ",
-            "sale": "199",
-            "year": "2006"
+            'Client': 'NAZ',
+            'sale'  : '134',
+            'year'  : '2008'
         },
         {
-            "Client": "NAZ",
-            "sale": "134",
-            "year": "2008"
-        },
-        {
-            "Client": "NAZ",
-            "sale": "176",
-            "year": "2013"
+            'Client': 'NAZ',
+            'sale'  : '176',
+            'year'  : '2013'
         }
     ];
 
