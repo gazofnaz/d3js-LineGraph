@@ -76,12 +76,12 @@ function InitChart() {
     // PLOT LINES
     var lineGen = d3.svg.line()
 
-    .x(function( d ) {
-        return xScale( d.year );
+    .x( function( done ) {
+        return xScale( done.year );
     })
 
-    .y(function( d ) {
-        return yScale( d.sale );
+    .y( function( done ) {
+        return yScale( done.sale );
     })
     .interpolate( 'basis' ); // make line smooth
 
@@ -95,6 +95,7 @@ function InitChart() {
             .attr( 'd', lineGen( done.values ) )
             .attr( 'stroke', GetRandomColour() )
             .attr( 'stroke-width', 2 )
+            .attr( 'id', 'line_' + done.key )
             .attr( 'fill', 'none' );
 
         // draw the legend
@@ -103,7 +104,10 @@ function InitChart() {
             .attr( 'y', HEIGHT )
             .style( 'fill', 'black' )
             .attr( 'class', 'legend' )
-            .text( done.key );
+            .text( done.key )
+            .on( 'click', function(){
+                ToggleLineDisplay( done );
+            });
 
     });
 /** END GRAPHS */
@@ -116,6 +120,7 @@ function InitChart() {
  *
  */
 function GetMin( data, column ) {
+
     // min gets the minimum data value from a range
     var min = d3.min( data, function( done ) {
         return done[column]; // same as done.year
@@ -131,6 +136,7 @@ function GetMin( data, column ) {
  *
  */
 function GetMax( data, column ) {
+
     // max gets the maximum data value from a range
     var max = d3.max( data, function( done ) {
         return done[column]; // same as done.year
@@ -145,6 +151,7 @@ function GetMax( data, column ) {
  * Keeps messy anonymous functions out of the code
  */
 function SplitDataByKey( data, key ){
+
     // nest splits the data by a given key
     var dataGroup = d3.nest().key( function( done ) {
         return done[key];
@@ -167,6 +174,21 @@ function GetRandomColour(){
     }
 
     return colour;
+}
+
+/**
+ * Toggle the display of each line
+ * 
+ * Called by clicking each legend key
+ *
+ */
+function ToggleLineDisplay( done ){
+
+    var active = done.active ? false : true;
+    var opacity = active ? 0 : 1;
+    d3.select( '#line_' + done.key ).style( 'opacity', opacity );
+    done.active = active;
+
 }
 
 /**
